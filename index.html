@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RASIPS (ICEGATE Replica)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="branding">RASIPS</div>
+    <nav>
+      <a href="#" id="loginLink">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="loginPage" class="page">
+      <h2>Login to RASIPS</h2>
+      <input type="text" placeholder="User ID" id="inputUser"><br>
+      <input type="password" placeholder="Password" id="inputPass"><br>
+      <button onclick="goToPage('dashboardPage')">Login as Guest</button>
+    </section>
+
+    <section id="dashboardPage" class="page hidden">
+      <div class="toolbar">
+        <h2>Dashboard</h2>
+        <button class="btn-new" onclick="goToPage('bookingGoodsPage')">New Booking</button>
+      </div>
+      <div id="bookingList"></div>
+    </section>
+
+    <section id="bookingGoodsPage" class="page hidden">
+      <h2>Step 1: Goods Details</h2>
+      <input type="text" id="goodsName" placeholder="Goods Name"><br>
+      <input type="file" id="goodsDoc"><br>
+      <button onclick="goToPage('bookingVehiclePage')">Next</button>
+    </section>
+
+    <section id="bookingVehiclePage" class="page hidden">
+      <h2>Step 2: Vehicle Details</h2>
+      <input type="text" id="vehicleNumber" placeholder="Vehicle Number"><br>
+      <input type="file" id="vehicleDoc"><br>
+      <button onclick="goToPage('bookingPaymentPage')">Next</button>
+    </section>
+
+    <section id="bookingPaymentPage" class="page hidden">
+      <h2>Step 3: Payment</h2>
+      <label>Goods Charge:</label><input type="number" id="goodsCharge" value="100"><br>
+      <label>Vehicle Charge:</label><input type="number" id="vehicleCharge" value="150"><br>
+      <button onclick="calculateBill()">Generate Bill</button>
+    </section>
+
+    <section id="bookingBillPage" class="page hidden">
+      <h2>Step 4: Bill</h2>
+      <div id="billSummary"></div>
+      <button onclick="goToPage('bookingRFIDPage')">Next</button>
+    </section>
+
+    <section id="bookingRFIDPage" class="page hidden">
+      <h2>Step 5: RFID Generated</h2>
+      <div class="card">
+        <strong>RFID:</strong> <span id="rfidCode"></span>
+      </div>
+      <button onclick="completeBooking()">Finish Booking</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
